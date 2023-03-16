@@ -24,8 +24,8 @@ class PhotosApi(Resource):
     def get(self, venueId):
         image = Photo.query.filter_by(venue_id=venueId).all()
         if not image:
-            PE.abort_if_venue_doesnt_exist(venueId)
-        return image
+            PE.abort_if_venue_has_no_photos(venueId)
+        return image, 200
 
     @marshal_with(photo_fields)
     def post(self, venueId):
@@ -36,7 +36,7 @@ class PhotosApi(Resource):
             image.insert()
         except:
             PE.abort_if_photo_wasnt_added()
-        return image
+        return image, 201
 
 
 class PhotoApi(Resource):
@@ -46,7 +46,7 @@ class PhotoApi(Resource):
             venue_id=venueId).filter_by(id=pk).first()
         if not image:
             PE.abort_if_photo_doesnt_exist(pk)
-        return image
+        return image, 200
 
     @marshal_with(photo_fields)
     def put(self, pk, venueId):
@@ -61,7 +61,7 @@ class PhotoApi(Resource):
             image.update()
         except:
             PE.abort_if_photo_doesnt_exist(pk)
-        return image
+        return image, 200
 
     @marshal_with(photo_fields)
     def delete(self, pk, venueId):
@@ -71,4 +71,4 @@ class PhotoApi(Resource):
         except:
             PE.abort_if_photo_doesnt_exist(pk)
         images = Photo.query.filter_by(venue_id=venueId).all()
-        return images
+        return images, 204
