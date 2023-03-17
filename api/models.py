@@ -41,13 +41,19 @@ class Venue(db.Model):
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150))
+    username = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
+    registered_on = db.Column(db.DateTime(), nullable=False)
+    email = db.Column(db.String(150), unique=True)
+    public_id = db.Column(db.String(150), unique=True)
     photos = db.relationship("Photo")
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, email, public_id, registered_on):
         self.username = username
         self.password = password
+        self.email = email
+        self.public_id = public_id
+        self.registered_on = registered_on
 
     def insert(self):
         """Inserts a contact to the database"""
@@ -95,6 +101,6 @@ def setup_db(app):
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///venues.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
-    migrate.init_app(app)
+    migrate.init_app(app, db)
     with app.app_context():
         db.create_all()
