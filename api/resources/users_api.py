@@ -8,7 +8,7 @@ import os
 import datetime
 import uuid
 
-from ..models import User
+from ..common.models import User
 from ..common.errors import UserErrors as UE
 from ..common.errors import UserLogin as UL
 

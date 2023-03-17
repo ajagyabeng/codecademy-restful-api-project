@@ -1,7 +1,7 @@
 from flask_restful import Resource, marshal_with, fields, reqparse
 from flask_cors import cross_origin
 
-from ..models import Photo
+from ..common.models import Photo
 from ..common.errors import PhotoErrors as PE
 
 
