@@ -41,7 +41,7 @@ def login():
             "password": password,
             "email": email
         }
-        res = requests.get("http://127.0.0.1:8080/api/users",
+        res = requests.get("http://127.0.0.1:8080/api/users/login",
                            headers=headers, json=body)
         if res.status_code == 200:
             user = User.query.filter_by(email=email).first()
