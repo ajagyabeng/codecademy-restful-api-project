@@ -1,4 +1,5 @@
 from flask_restful import Resource, marshal_with, fields, reqparse
+from flask_cors import cross_origin
 
 from ..models import Photo
 from ..common.errors import PhotoErrors as PE
@@ -20,6 +21,7 @@ photo_fields = {
 
 
 class PhotosApi(Resource):
+    @cross_origin()
     @marshal_with(photo_fields)
     def get(self, venueId):
         image = Photo.query.filter_by(venue_id=venueId).all()
@@ -40,6 +42,7 @@ class PhotosApi(Resource):
 
 
 class PhotoApi(Resource):
+    @cross_origin()
     @marshal_with(photo_fields)
     def get(self, pk, venueId):
         image = Photo.query.filter_by(
