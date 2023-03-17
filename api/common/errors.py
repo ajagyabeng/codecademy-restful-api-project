@@ -10,7 +10,7 @@ class UserErrors():
 
 
 class VenueErrors():
-    def abort_if_user_doesnt_exist(pk):
+    def abort_if_venue_doesnt_exist(pk):
         abort(404, message=f"Venue with ID: {pk} doesn't exist")
 
 
