@@ -10,3 +10,10 @@ class SignupForm(FlaskForm):
                              DataRequired(), Length(min=10)])
     email = EmailField("Email", validators=[DataRequired()])
     submit = SubmitField("SIGN UP")
+
+
+class LoginForm(FlaskForm):
+    email = EmailField("Email", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[
+        DataRequired(), Length(min=10)])
+    submit = SubmitField("LOGIN")
