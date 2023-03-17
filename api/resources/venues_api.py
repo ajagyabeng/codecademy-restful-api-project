@@ -2,7 +2,7 @@ from flask_restful import Resource, marshal_with, fields, reqparse
 from flask import request
 from flask_cors import cross_origin
 
-from ..models import Venue
+from ..common.models import Venue
 from ..common.errors import VenueErrors as VE
 
 
