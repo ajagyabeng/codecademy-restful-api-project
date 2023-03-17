@@ -16,6 +16,15 @@ class UserErrors():
         abort(403, message=f"Incorrect Password")
 
 
+class UserLogin():
+    def abort_if_login_user_doesnt_exist(email):
+        abort(
+            404, message=f"User with email: {email} doesn't exist. Check and try again.")
+
+    def abort_if_wrong_password():
+        abort(403, message=f"Incorrect Password")
+
+
 class VenueErrors():
     def abort_if_venue_doesnt_exist(pk):
         abort(404, message=f"Venue with ID: {pk} doesn't exist")
