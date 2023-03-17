@@ -1,5 +1,6 @@
 from flask_restful import Resource, marshal_with, fields, reqparse
 from flask import request
+from flask_cors import cross_origin
 
 from ..models import Venue
 from ..common.errors import VenueErrors as VE
@@ -21,7 +22,8 @@ venue_fields = {
 
 
 class VenuesApi(Resource):
-    """Venues resource that handles requests to get all venues and request to add a vue"""
+    """Venues resource that handles requests to get all venues and request to add a venue"""
+    @cross_origin()
     @marshal_with(venue_fields)
     def get(self):
         """
@@ -50,6 +52,7 @@ class VenueApi(Resource):
     Venue resource that handles get, put, and delete requests on individual venues.
     pk: primary_key
     """
+    @cross_origin()
     @marshal_with(venue_fields)
     def get(self, pk):
         """
@@ -57,6 +60,8 @@ class VenueApi(Resource):
         returns: A venue with the ID provided.
         """
         venue = Venue.query.get(pk)
+        if not venue:
+            VE.abort_if_venue_doesnt_exist(pk)
         return venue, 200
 
     @marshal_with(venue_fields)
@@ -81,6 +86,8 @@ class VenueApi(Resource):
         returns: All venues in the database.
         """
         venue = Venue.query.get(pk)
+        if not venue:
+            VE.abort_if_user_doesnt_exist(pk)
         venue.delete()
         venues = Venue.query.all()
         return venues, 204
