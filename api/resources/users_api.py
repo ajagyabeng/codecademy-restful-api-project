@@ -3,6 +3,7 @@ from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import find_dotenv, load_dotenv
 from flask_cors import cross_origin
+from flask_login import login_user, login_required, logout_user, current_user
 import os
 import datetime
 import uuid
@@ -38,6 +39,17 @@ class UsersApi(Resource):
         """Gets all users."""
         users = User.query.all()
         return users, 200
+
+    @marshal_with(user_fields)
+    def get(self):
+        """"""
+        data = post_parser.parse_args()
+        user = User.query.filter_by(email=data.email).first()
+        if user:
+            if check_password_hash(user.password, data.password):
+                return user, 200
+            UE.abort_if_wrong_password()
+        UE.abort_if_login_user_doesnt_exist(data.email)
 
     @marshal_with(user_fields)
     def post(self):
