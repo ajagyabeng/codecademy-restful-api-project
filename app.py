@@ -1,7 +1,7 @@
 from api import create_app
 from flask_restful import Api
 from api.resources.venues_api import VenuesApi, VenueApi
-from api.resources.users_api import UsersApi, UserApi
+from api.resources.users_api import UsersApi, UserApi, UserLogin
 from api.resources.photos_api import PhotosApi, PhotoApi
 
 app = create_app()
@@ -15,6 +15,9 @@ api.add_resource(VenueApi, "/api/venues/<int:pk>")
 """Resources for Users"""
 api.add_resource(UsersApi, "/api/users")
 api.add_resource(UserApi, "/api/users/<int:pk>")
+
+"""Resources for Users Login"""
+api.add_resource(UserLogin, "/api/users/login")
 
 """Resources for Photos"""
 api.add_resource(PhotosApi, "/api/venues/<int:venueId>/photos")
