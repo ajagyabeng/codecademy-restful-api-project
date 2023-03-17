@@ -5,8 +5,8 @@ class UserErrors():
     def abort_if_user_doesnt_exist(pk):
         abort(404, message=f"User with ID: {pk} doesn't exist. Check user ID.")
 
-    def abort_if_user_wasnt_added():
-        abort(500, message=f"Unsuccessful user creation.")
+    def abort_if_user_already_exists():
+        abort(500, message=f"User already exists")
 
 
 class VenueErrors():
