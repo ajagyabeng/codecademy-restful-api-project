@@ -10,6 +10,7 @@ import uuid
 
 from ..models import User
 from ..common.errors import UserErrors as UE
+from ..common.errors import UserLogin as UL
 
 # Locate .env file
 dotenv_path = find_dotenv()
@@ -94,5 +95,5 @@ class UserLogin(Resource):
         if user:
             if check_password_hash(user.password, data.password):
                 return user, 200
-            UE.abort_if_wrong_password()
-        UE.abort_if_login_user_doesnt_exist(data.email)
+            UL.abort_if_wrong_password()
+        UL.abort_if_login_user_doesnt_exist(data.email)
