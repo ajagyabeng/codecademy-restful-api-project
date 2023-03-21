@@ -242,6 +242,17 @@ Authentication: This version of the applications does not require authentication
 }
 ```
 
+### DELETE /venues/venue-id/photos/primary-key
+- General:
+  - Deletes the venue with the primary key.
+  - Returns a success message.
+- Sample: `requests.delete("http://127.0.0.1:8080/api/venues/1/photos/1")`
+
+```
+{
+  "message": "The photo of venue {venue_id} has been deleted."
+}
+```
 
 <!-- *Italics*
 
