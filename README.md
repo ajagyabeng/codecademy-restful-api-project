@@ -68,8 +68,8 @@ Authentication: This version of the applications does not require authentication
 ### PUT /users/primary-key
 - General:
   - Updates the username of the user with the primary key provided.
-  - Returns the user object with the primary key provided.
-- Sample: `requests.get("http://127.0.0.1:8080/api/users/1", json={"username": "jacko"})`
+  - Returns a user object with the primary key provided.
+- Sample: `requests.put("http://127.0.0.1:8080/api/users/1", headers={"Content-Type": "application/json"}, json={"username": "jacko"})`
 ```
 {
   "user": {
@@ -82,8 +82,77 @@ Authentication: This version of the applications does not require authentication
 }
 ```
 
-*Italics*
+# Venues
+
+### GET /venues
+
+- General:
+  - Returns a list of venue objects.
+- Sample: `requests.get("http://127.0.0.1:8080/api/venues")`
+  
+```
+[
+    {
+        "venue": {
+            "id": 1,
+            "name": "Vida E caffe",
+            "address": "Cedi St."
+        }
+    },
+    {
+        "venue": {
+            "id": 2,
+            "name": "KFC",
+            "address": "Maranatha St."
+        }
+    }
+]
+```
+
+### GET venues/primary-key
+- General:
+  - Returns a venue object with the primary key provided.
+- Sample: `requests.get("http://127.0.0.1:8080/api/venues/1")`
+```
+{
+    "venue": {
+        "address": "Cedi St.",
+        "id": 1,
+        "name": "Vida E caffe"
+    }
+}
+```
+
+### POST /venues
+- General:
+  - Creates a new user using the submitted username, email, and password.
+  - Returns a success message.
+- Sample: `requests.post("http://127.0.0.1:8080/api/venues", headers={"Content-Type": "application/json"}, json={"name": "KFC", "address": "Cedi St."})`
+
+```
+{
+  "message": "Success! Thevenue has been added to the database."
+}
+```
+
+### PUT /venues/primary-key
+- General:
+  - Updates the name and/or address of a venue with the primary key.
+  - Returns a venue object with the primary key provided.
+- Sample: ``requests.put("http://127.0.0.1:8080/api/venues/1", headers={"Content-Type": "application/json"}, json={"name": "Burger King"})``
+
+```
+{
+    "venue": {
+        "id": 1,
+        "name": "Burger King",
+        "address": "Cedi St."
+    }
+}
+```
+
+<!-- *Italics*
 
 **Bold text**
 
-[Link](http://google.com)
+[Link](http://google.com) -->
