@@ -250,7 +250,7 @@ Authentication: This version of the applications does not require authentication
 
 ```
 {
-  "message": "The photo of venue {venue_id} has been deleted."
+  "message": "The photo of venue 1 has been deleted."
 }
 ```
 
