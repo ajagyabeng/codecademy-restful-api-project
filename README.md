@@ -139,7 +139,7 @@ Authentication: This version of the applications does not require authentication
 - General:
   - Updates the name and/or address of a venue with the primary key.
   - Returns a venue object with the primary key provided.
-- Sample: ``requests.put("http://127.0.0.1:8080/api/venues/1", headers={"Content-Type": "application/json"}, json={"name": "Burger King"})``
+- Sample: `requests.put("http://127.0.0.1:8080/api/venues/1", headers={"Content-Type": "application/json"}, json={"name": "Burger King"})`
 
 ```
 {
@@ -148,6 +148,18 @@ Authentication: This version of the applications does not require authentication
         "name": "Burger King",
         "address": "Cedi St."
     }
+}
+```
+
+### DELETE venues/primary-key
+- General:
+  - Deletes the venue with the primary key.
+  - Returns a success message.
+- Sample: `requests.delete("http://127.0.0.1:8080/api/venues/1")`
+
+```
+{
+  "message": "The venue has been deleted."
 }
 ```
 
