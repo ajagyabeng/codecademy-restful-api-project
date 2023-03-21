@@ -109,7 +109,7 @@ Authentication: This version of the applications does not require authentication
 ]
 ```
 
-### GET venues/primary-key
+### GET /venues/primary-key
 - General:
   - Returns a venue object with the primary key provided.
 - Sample: `requests.get("http://127.0.0.1:8080/api/venues/1")`
@@ -125,7 +125,7 @@ Authentication: This version of the applications does not require authentication
 
 ### POST /venues
 - General:
-  - Creates a new user using the submitted username, email, and password.
+  - Creates a new venue using the submitted username, email, and password.
   - Returns a success message.
 - Sample: `requests.post("http://127.0.0.1:8080/api/venues", headers={"Content-Type": "application/json"}, json={"name": "KFC", "address": "Cedi St."})`
 
@@ -151,7 +151,7 @@ Authentication: This version of the applications does not require authentication
 }
 ```
 
-### DELETE venues/primary-key
+### DELETE /venues/primary-key
 - General:
   - Deletes the venue with the primary key.
   - Returns a success message.
@@ -162,6 +162,86 @@ Authentication: This version of the applications does not require authentication
   "message": "The venue has been deleted."
 }
 ```
+
+# Photos
+
+### Get /venues/venue-id/photos
+
+- General:
+  - Returns a list of photo objects of a particular venue.
+- Sample: `requests.get("http://127.0.0.1:8080/api/venues/1/photos")`
+
+```
+[
+    {
+        "photo": {
+            "author_id": 1,
+            "id": 1,
+            "image_url": "https://www.youtube.com/watch?v=pjVhrIUete",
+            "venue_id": 1
+        }
+    },
+    {
+        "photo": {
+            "author_id": 1,
+            "id": 2,
+            "image_url": "https://www.youtube.com/watch?v=HUBNt18RFbo",
+            "venue_id": 1
+        }
+    }
+]
+```
+
+### Get /venues/venue-id/photos/primary-key
+- General:
+  - Returns a photo object with the primary key provided.
+- Sample: `requests.get("http://127.0.0.1:8080/api/venues/1")`
+
+```
+{
+    "photo": {
+        "author_id": 1,
+        "id": 1,
+        "image_url": "https://www.youtube.com/watch?v=pjVhrIUete",
+        "venue_id": 1
+    }
+}
+```
+
+### POST /venues/venue-id/photos
+- General:
+  - Creates a new photo.
+  - Returns an object of the newly added image.
+- Sample: `requests.post("http://127.0.0.1:8080/api/venues/1/photos", headers={"Content-Type": "application/json"}, json={"image_url": "https://www.youtube.com/watch?v=pjVhrIUete", "author_id": "1"})`
+
+```
+{
+    "photo": {
+        "id": 2,
+        "image_url": "https://www.youtube.com/watch?v=HUBNt18RFbo",
+        "author_id": 1,
+        "venue_id": 1
+    }
+}
+```
+
+### PUT /venues/venue-id/photos/primary-key
+- General:
+  - Updates the venue id and/or image url.
+  - Returns a photo object with the primary key provided.
+- Sample: `requests.post("http://127.0.0.1:8080/api/venues/1/photos/2", headers={"Content-Type": "application/json"}, json={"image_url": "https://www.youtube.com/watch?v=pjVhrIUete"})`
+
+```
+{
+    "photo": {
+        "id": 2,
+        "image_url": "https://www.youtube.com/watch?v=pjVhrIUete",
+        "author_id": 1,
+        "venue_id": 1
+    }
+}
+```
+
 
 <!-- *Italics*
 
