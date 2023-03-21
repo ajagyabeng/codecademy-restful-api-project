@@ -37,7 +37,7 @@ Authentication: This version of the applications does not require authentication
 ]
 ```
 
-### GET /users/<primary-key>
+### GET /users/primary-key
 - General:
   - Returns a user object with the primary key provided
 - Sample: `requests.get("http://127.0.0.1:8080/api/users/1")`
@@ -65,7 +65,7 @@ Authentication: This version of the applications does not require authentication
 }
 ```
 
-### PUT /users/<primary-key>
+### PUT /users/primary-key
 - General:
   - Updates the username of the user with the primary key provided.
   - Returns the user object with the primary key provided.
