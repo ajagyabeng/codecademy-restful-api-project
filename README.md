@@ -1,5 +1,5 @@
 # API REFERENCE
----
+
 ## Getting Started
 
 Base URL: http://127.0.0.1:8080/api
@@ -255,6 +255,8 @@ Authentication: This version of the applications does not require authentication
 ```
 
 <!-- *Italics*
+
+---
 
 **Bold text**
 
