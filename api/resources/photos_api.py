@@ -73,5 +73,4 @@ class PhotoApi(Resource):
             image.delete()
         except:
             PE.abort_if_photo_doesnt_exist(pk)
-        images = Photo.query.filter_by(venue_id=venueId).all()
-        return images, 204
+        return {"message": f"The photo of venue {venueId} has been deleted."}, 204
