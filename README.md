@@ -53,18 +53,6 @@ Authentication: This version of the applications does not require authentication
 }
 ```
 
-### POST /users
-- General:
-  - Creates a new user using the submitted username, email, and password.
-  - Returns a success message.
-- Sample: `requests.post("http://127.0.0.1:8080/api/users", headers={"Content-Type": "application/json", "X-CSRFToken": csrf_token}, json={"username": "Jonjo", "email": "jonjon@gmail.com", "password": "xxxxxxxxxxx"})`
-
-```
-{
-  "message": "Success! The user has been added to the database."
-}
-```
-
 ### PUT /users/primary-key
 - General:
   - Updates the username of the user with the primary key provided.
@@ -81,6 +69,21 @@ Authentication: This version of the applications does not require authentication
   }
 }
 ```
+
+### POST /users
+- General:
+  - Creates a new user using the submitted username, email, and password.
+  - Returns a success message.
+- Sample: `requests.post("http://127.0.0.1:8080/api/users", headers={"Content-Type": "application/json", "X-CSRFToken": csrf_token}, json={"username": "Jonjo", "email": "jonjon@gmail.com", "password": "xxxxxxxxxxx"})`
+
+```
+{
+  "message": "Success! The user has been added to the database."
+}
+```
+### Sign Up /signup
+> Sign up to be able to add venues and images of venues
+> 
 
 # Venues
 
