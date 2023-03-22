@@ -45,7 +45,6 @@ class UsersApi(Resource):
     def post(self):
         """Adds a new user."""
         data = post_parser.parse_args()
-        print(data)
         user = User.query.filter_by(email=data.email).first()
         if not user:
             new_user = User(
@@ -57,11 +56,9 @@ class UsersApi(Resource):
                 public_id=str(uuid.uuid4())
             )
             new_user.insert()
-        else:
-            UE.abort_if_user_already_exists()
-        return {
-            "message": "Success! The user has been added to the database."
-        }, 201
+            added_user = User.query.filter_by(email=data.email).first()
+            return added_user, 201
+        UE.abort_if_user_already_exists()
 
 
 class UserApi(Resource):
