@@ -89,7 +89,7 @@ class UserApi(Resource):
 class UserLogin(Resource):
     @marshal_with(user_fields)
     def get(self):
-        """"""
+        """Checks login credentials."""
         data = post_parser.parse_args()
         user = User.query.filter_by(email=data.email).first()
         if user:
