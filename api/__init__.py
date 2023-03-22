@@ -6,8 +6,6 @@ from flask_login import LoginManager
 from dotenv import find_dotenv, load_dotenv
 import os
 
-from .common.csrf import csrf
-
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 csrf = CSRFProtect()
