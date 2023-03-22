@@ -9,27 +9,33 @@ from ..common.models import User
 auth = Blueprint("auth", __name__)
 
 
-@auth.route("/signup", methods=["GET", "POST"])
+@auth.route("/api/signup", methods=["GET", "POST"])
 def signup():
     """Makes a post request to add a new user to the api."""
     form = SignupForm()
     if request.method == "POST" and form.validate_on_submit():
         data = request.form.to_dict()
+        csrf_token = data["csrf_token"]
+        print(csrf_token)
+        csrf_token_session = request.cookies["session"]
+        print(csrf_token_session)
 
         # SEND REQUEST TO API
-        headers = {"Content-Type": "application/json"}
+        headers = {"Content-Type": "application/json",
+                   "X-CSRFToken": csrf_token}
         body = {
             "username": data["username"],
             "password": data["password"],
             "email": data["email"]
         }
+
         res = requests.post("http://127.0.0.1:8080/api/users",
                             headers=headers, json=body)
-        # print(res.json())
+        print(res.json())
     return render_template("signup.html", form=form)
 
 
-@auth.route("/login", methods=["GET", "POST"])
+@auth.route("/api/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
     if request.method == "POST":
@@ -41,6 +47,8 @@ def login():
             "password": password,
             "email": email
         }
+
+        # Make a request to verify and login user
         res = requests.get("http://127.0.0.1:8080/api/users/login",
                            headers=headers, json=body)
         if res.status_code == 200:
