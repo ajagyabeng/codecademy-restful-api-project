@@ -81,8 +81,8 @@ Authentication: This version of the applications does not require authentication
   "message": "Success! The user has been added to the database."
 }
 ```
-### Sign Up /signup
-> Sign up to be able to add venues and images of venues
+### Sign Up /api/signup
+> Sign up to be able to add venues and images of venues.
 > 
 
 # Venues
