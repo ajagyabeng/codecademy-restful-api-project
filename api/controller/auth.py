@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 import requests
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_wtf.csrf import generate_csrf
 from flask_login import login_user, login_required, logout_user, current_user
 
 from ..form import SignupForm, LoginForm
@@ -15,14 +16,10 @@ def signup():
     form = SignupForm()
     if request.method == "POST" and form.validate_on_submit():
         data = request.form.to_dict()
-        csrf_token = data["csrf_token"]
-        print(csrf_token)
-        csrf_token_session = request.cookies["session"]
-        print(csrf_token_session)
+        # csrf_token = data["csrf_token"]
 
         # SEND REQUEST TO API
-        headers = {"Content-Type": "application/json",
-                   "X-CSRFToken": csrf_token}
+        headers = {"Content-Type": "application/json"}
         body = {
             "username": data["username"],
             "password": data["password"],
@@ -31,6 +28,7 @@ def signup():
 
         res = requests.post("http://127.0.0.1:8080/api/users",
                             headers=headers, json=body)
+        # print(res.cookies)
         print(res.json())
     return render_template("signup.html", form=form)
 
@@ -39,6 +37,7 @@ def signup():
 def login():
     form = LoginForm()
     if request.method == "POST":
+        print(request.form.to_dict())
         email = request.form.to_dict()["email"]
         password = request.form.to_dict()["password"]
 
