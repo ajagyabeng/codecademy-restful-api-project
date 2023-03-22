@@ -18,6 +18,7 @@ def create_app():
     # CORS(app)
     # csrf.init_app(app)
 
+    # import and register blueprints
     from .controller.auth import auth
     from .controller.views import views
     app.register_blueprint(auth, url_prefix="/")
@@ -25,6 +26,7 @@ def create_app():
 
     from .common.models import setup_db, User
 
+    # initialize aa with database to create tables and also track migrations,
     setup_db(app)
 
     login_manager = LoginManager()
