@@ -40,11 +40,11 @@ class VenuesApi(Resource):
         returns: All the venues in database
         """
         data = post_parser.parse_args()
-
         venue = Venue(name=data.name, address=data.address)
         venue.insert()
-        venues = Venue.query.all()
-        return venues, 201
+        return {
+            "message": "Success! The venue has been added to the database."
+        }, 201
 
 
 class VenueApi(Resource):
@@ -89,5 +89,6 @@ class VenueApi(Resource):
         if not venue:
             VE.abort_if_user_doesnt_exist(pk)
         venue.delete()
-        venues = Venue.query.all()
-        return venues, 204
+        return {
+            "message": "Success! The venue has been deleted."
+        }, 204
