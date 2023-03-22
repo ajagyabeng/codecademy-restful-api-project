@@ -6,16 +6,16 @@
   <div class="form-group">
     {{ form.csrf_token }}
     <div>
-      {{form.username(placeholder="Username") }}
+      {{form.username(placeholder="Username", class="mb-2") }}
     </div>
     <div>
-      {{form.email(placeholder="Email") }}
+      {{form.email(placeholder="Email", class="mb-2") }}
     </div>
     <div>
-      {{form.password(placeholder="Password") }}
+      {{form.password(placeholder="Password", class="mb-2") }}
     </div>
   </div>
-  {{ form.submit() }}
+  {{ form.submit(class="mt-2") }}
 </form>
-<div><a href="/login">Login</a></div>
+<div class="mt-3"><a href="/api/login">Login</a></div>
 {% endblock %}
